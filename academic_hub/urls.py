@@ -20,6 +20,7 @@ from users import views as auth_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path("register/",auth_views.register,name="register"),
+    path("register/",auth_views.register_user,name="register"),
+    path("login/",auth_views.login_user,name="login"),
     path('',include('dashboard.urls'))
 ]
