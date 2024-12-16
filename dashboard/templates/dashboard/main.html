@@ -1,0 +1,81 @@
+{% load django_bootstrap5 %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  {% if title %}
+  <title>Academic Hub - {{ title }}</title>
+  {% else %}
+  <title>Academic Hub</title>
+  {% endif %}
+
+  {% bootstrap_css %}
+  
+
+  <link rel="stylesheet" type="text/css" href="{% static 'dashboard/style.css' %}" />
+</head>
+
+<body>
+
+  <!-- navbar -->
+  <nav class="navbar navbar-expand-lg nav-border">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">Academic Hub</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0 d-flex flex-row align-items-center gap-3 md:d-flex md:align-items-center gap-2">
+          <li class="nav-item">
+            <button class="btn btn-dark text-white">Login</button>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#profileModal">
+              <img src="https://cdn.pixabay.com/video/2024/05/19/212574_tiny.jpg" alt="Profile Picture"
+                class="profile-img">
+            </a>
+          </li>
+        </ul>
+
+      </div>
+    </div>
+  </nav>
+
+  <div class="modal fade" id="profileModal" tabindex="-1" aria-labelledby="profileModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="profileModalLabel">Profile Information</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="profile-details d-flex align-items-center gap-2">
+            <img src="https://cdn.pixabay.com/video/2024/05/19/212574_tiny.jpg" alt="Profile Picture"
+              class="profile-img">
+            <div class="profile-content">
+              <p>name</p>
+              <p>name@gmail.com</p>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-dark">Edit Profile</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {% block content %} {% endblock %}
+
+  {% bootstrap_javascript %}
+  
+
+</body>
+
+</html>
