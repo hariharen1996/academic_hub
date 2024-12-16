@@ -1,7 +1,7 @@
 from django.shortcuts import render,redirect
 from django.contrib import messages
 from .forms import RegistrationForm
-from django.contrib.auth import login,authenticate
+from django.contrib.auth import login,authenticate,logout
 from django.contrib.auth.forms import AuthenticationForm
 
 # Create your views here.
@@ -34,3 +34,7 @@ def login_user(request):
         form = AuthenticationForm()
     return render(request,"users/login.html",{'form':form})   
             
+def logout_user(request):
+    logout(request)
+    messages.warning(request,f"You have been logged out!😕")
+    return redirect('login')
