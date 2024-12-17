@@ -45,12 +45,14 @@
             </button>
           {% endif %}  
           </li>
+        {% if user.is_authenticated %}  
           <li class="nav-item">
             <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#profileModal">
-              <img src="https://cdn.pixabay.com/video/2024/05/19/212574_tiny.jpg" alt="Profile Picture"
-                class="profile-img">
+              <img src="{{ user.profile.user_image.url }}" alt="{{ user.username }}"
+              class="profile-img">
             </a>
           </li>
+        {% endif %}  
         </ul>
 
       </div>
@@ -66,11 +68,11 @@
         </div>
         <div class="modal-body">
           <div class="profile-details d-flex align-items-center gap-2">
-            <img src="https://cdn.pixabay.com/video/2024/05/19/212574_tiny.jpg" alt="Profile Picture"
+            <img src="{{ user.profile.user_image.url }}" alt="{{ user.username }}"
               class="profile-img">
             <div class="profile-content">
-              <p>name</p>
-              <p>name@gmail.com</p>
+              <p>{{ user.username }}</p>
+              <p>{{ user.email }}</p>
             </div>
           </div>
         </div>
