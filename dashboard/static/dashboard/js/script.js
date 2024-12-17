@@ -1,6 +1,6 @@
-const profileBtn = document.querySelector(".create-profile");
-
 document.addEventListener("DOMContentLoaded", (e) => {
+  const profileBtn = document.querySelector(".create-profile");
+
   setTimeout(() => {
     const message = document.querySelectorAll(".alert-message");
     message.forEach((items) => {

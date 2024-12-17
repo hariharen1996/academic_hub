@@ -83,10 +83,10 @@ body::after{
 }
 
 .highlight-profile{
-    border: 1px solid #ffdd57;
     box-shadow: 0px 5px 15px rgba(0,0,0,0.3);
     animation: anime infinite ease-out forwards;
 }
+
 
 @keyframes anime {
     0% {

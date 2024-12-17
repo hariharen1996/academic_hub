@@ -1,0 +1,23 @@
+{% extends 'dashboard/main.html' %}
+
+{% block content %}
+    <div class="dashboard-container mt-5">
+        <div class="search-container">
+            <input type="text" class="form-control" placeholder="Search for student records..." />
+        </div>
+        <div class="filter-container mt-2 d-flex justify-content-between align-items-center gap-1">
+            <div class="filter-items">
+                <select id="dept" class="form-select">
+                    <option value="">Select Course</option>
+                    <option value="cse">Computer Science</option>
+                    <option value="bio">Biology</option>
+                    <option value="cm">Commerce</option>
+                    <option value="ai">AI</option>
+                </select>
+            </div>
+            <div class="filter-items">
+                <input type="date" class="form-control" />
+            </div>
+        </div>
+    </div>
+{% endblock %}
