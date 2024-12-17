@@ -1,0 +1,14 @@
+{% extends 'dashboard/main.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<div class="d-flex justify-content-center align-items-center mt-5">
+    <form method="POST" class="bg-white p-5 rounded shadow mb-5" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ user_form|crispy }}
+        {{ profile_form|crispy }}
+        <button type="submit" class="btn btn-dark">Update Profile</button>
+    </form>
+</div>
+
+{% endblock %}
