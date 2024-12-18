@@ -1,6 +1,6 @@
-document.addEventListener("DOMContentLoaded", (e) => {
-  const profileBtn = document.querySelector(".create-profile");
+const profileBtn = document.querySelector("#createProfile");
 
+document.addEventListener("DOMContentLoaded", (e) => {
   setTimeout(() => {
     const message = document.querySelectorAll(".alert-message");
     message.forEach((items) => {
@@ -13,19 +13,23 @@ document.addEventListener("DOMContentLoaded", (e) => {
   }, 3000);
 });
 
-profileBtn.addEventListener("click", () => {
-  let profileImg = document.querySelector(".profile-img");
-  profileImg.classList.add("highlight-profile");
+if (profileBtn) {
+  profileBtn.addEventListener("click", () => {
+    let profileImg = document.querySelector(".profile-img");
+    profileImg.classList.add("highlight-profile");
 
-  const toggleNav = document.querySelector(".navbar-toggler");
+    const toggleNav = document.querySelector(".navbar-toggler");
 
-  if (window.innerWidth < 992) {
-    if (toggleNav.getAttribute("aria-expanded") === "false") {
-      toggleNav.click();
+    if (window.innerWidth < 992) {
+      if (toggleNav.getAttribute("aria-expanded") === "false") {
+        toggleNav.click();
+      }
     }
-  }
-  setTimeout(() => {
-    profileImg.classList.remove("highlight-profile");
-    toggleNav.getAttribute("aria-expanded") === "true";
-  }, 5000);
-});
+    setTimeout(() => {
+      profileImg.classList.remove("highlight-profile");
+      toggleNav.getAttribute("aria-expanded") === "true";
+    }, 5000);
+  });
+} else {
+  console.log("profile btn found");
+}

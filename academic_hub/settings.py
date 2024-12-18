@@ -42,7 +42,8 @@ INSTALLED_APPS = [
     'dashboard',
     'users',
     "crispy_forms",
-    "crispy_bootstrap5"
+    "crispy_bootstrap5",
+    'rest_framework'
 ]
 
 MIDDLEWARE = [
