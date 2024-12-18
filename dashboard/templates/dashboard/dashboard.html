@@ -1,26 +1,46 @@
 {% extends 'dashboard/main.html' %}
 
 {% block content %}
-    <div class="dashboard-container mt-5">
-        <div class="add-student">
-            <button class="btn btn-dark mb-3">Add Student</button>
+<div class="dashboard-container mt-5">
+    <div class="add-student">
+        <button class="btn btn-dark mb-3">Add Student</button>
+    </div>
+    <div class="search-container">
+        <input type="text" class="form-control" placeholder="Search for student records..." />
+    </div>
+    <div class="filter-container mt-2 d-flex justify-content-between align-items-center gap-1">
+        <div class="filter-items">
+            <select id="dept" class="form-select">
+                <option value="">Select Course</option>
+                <option value="cse">Computer Science</option>
+                <option value="bio">Biology</option>
+                <option value="cm">Commerce</option>
+                <option value="ai">AI</option>
+            </select>
         </div>
-        <div class="search-container">
-            <input type="text" class="form-control" placeholder="Search for student records..." />
-        </div>
-        <div class="filter-container mt-2 d-flex justify-content-between align-items-center gap-1">
-            <div class="filter-items">
-                <select id="dept" class="form-select">
-                    <option value="">Select Course</option>
-                    <option value="cse">Computer Science</option>
-                    <option value="bio">Biology</option>
-                    <option value="cm">Commerce</option>
-                    <option value="ai">AI</option>
-                </select>
-            </div>
-            <div class="filter-items">
-                <input type="date" class="form-control" />
-            </div>
+        <div class="filter-items">
+            <input type="date" class="form-control" />
         </div>
     </div>
+    <div class="student-lists-container mt-5">
+        {% for student in students %}
+        <a href="#" class="navigate-details text-decoration-none text-black">
+            <div class="student-card">
+                <div class="image-container">
+                    {% if student.student_image %}
+                    <img src="{{ student.student_image.url }}" alt="{{ student.name }}" class="student-profile-img" />
+                    {% else %}
+                    <img src="../../../media/default_pic.png" alt="{{ student.name }}" class="student-profile-img" />
+                    {% endif %}
+                </div>
+                <div class="card-content">
+                    <h1 class="text=black">{{ student.name }}</h1>
+                    <p class="text=black">{{ student.roll_no }}</p>
+                </div>
+            </div>
+        </a>
+        {% endfor %}
+    </div>
+
+</div>
 {% endblock %}
