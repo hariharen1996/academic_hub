@@ -15,6 +15,22 @@ SUBJECTS = {
 }
 
 # Create your models here.
+
+class Subject(models.Model):
+    name = models.CharField(max_length=100)
+    course = models.CharField(max_length=20,choices=COURSES)
+
+    def __str__(self):
+        return self.name 
+
+class StudentMarks(models.Model):
+    student = models.ForeignKey('Student',on_delete=models.CASCADE,related_name='subject_marks')
+    subject = models.ForeignKey(Subject,on_delete=models.CASCADE)
+    score = models.IntegerField()
+
+    def __str__(self):
+        return f"{self.student.name} - {self.subject.name} : {self.score}"
+
 class Student(models.Model):
     name = models.CharField(max_length=150)
     roll_no = models.CharField(max_length=10,unique=True)
@@ -25,7 +41,7 @@ class Student(models.Model):
     date = models.DateField(auto_now_add=True)
     time = models.TimeField(auto_now_add=True)
     phone = models.CharField(max_length=20)
-    marks = models.JSONField()
+    marks = models.IntegerField()
     bookmarked = models.BooleanField(default=False)
 
     def __str__(self):
@@ -34,4 +50,7 @@ class Student(models.Model):
     def get_subjects(self):
         return SUBJECTS.get(self.course, [])
     
-    
+    def get_marks(self):
+        subject_marks = StudentMarks.objects.filter(student=self)
+        dict_marks = {subject_mark.subject.name: subject_mark.score for subject_mark in subject_marks}
+        return dict_marks
