@@ -52,5 +52,5 @@ class Student(models.Model):
     
     def get_marks(self):
         subject_marks = StudentMarks.objects.filter(student=self)
-        dict_marks = {subject_mark.subject.name: subject_mark.score for subject_mark in subject_marks}
-        return dict_marks
+        marks_dict = {subject_mark.subject.name: subject_mark.score for subject_mark in subject_marks}
+        return marks_dict
