@@ -23,6 +23,16 @@
         }
         //console.log(data)
 
+
+        const date = new Date(data.date)
+        console.log(date)
+        const formatDate = date.toLocaleDateString('en-IN', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric'
+        })
+        console.log(formatDate)
+
         const defaultImage = "../../../media/default_pic.png";
         const studentImage = data.student_image || defaultImage;
 
@@ -32,8 +42,8 @@
             <table class="table table-bordered">
                 <thead class="thead-dark">
                     <tr>
-                        <th scope="col">Field</th>
-                        <th scope="col">Details</th>
+                        <th scope="col">Category</th>
+                        <th scope="col">Information</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -66,16 +76,13 @@
                         <td>${data.phone}</td>
                     </tr>
                     <tr>
-                        <td><strong>Marks</strong></td>
-                        <td>${data.marks}</td>
-                    </tr>
-                    <tr>
                         <td><strong>Subjects</strong></td>
                         <td>
                             <ul>
-                                ${data.subjects
-                .map((subject) => `<li>${subject}</li>`)
-                .join("")}
+                                ${data.subjects_marks.map((sub) => {
+            const { score, subject: { name } } = sub
+            return `<li>${name} : ${score}</li>`
+        }).join("")}
                             </ul>
                         </td>
                     </tr>
@@ -88,8 +95,8 @@
                         <td>${data.date}</td>
                     </tr>
                     <tr>
-                        <td><strong>Time</strong></td>
-                        <td>${data.time}</td>
+                        <td><strong>Date Uploaded</strong></td>
+                        <td>${formatDate}</td>
                     </tr>
                 </tbody>
             </table>

@@ -55,7 +55,38 @@
         let dom = "";
 
         data.forEach((student) => {
+
+            const currenDateTime = new Date()
+            //console.log(currenDateTime)
+            const studDate = new Date(student.date + "T" + student.time)
+            //console.log(studDate)
+            const diff = currenDateTime - studDate
+            console.log(diff)
+            const sec = Math.floor(diff/1000)
+            const min = Math.floor(sec/60)
+            const hrs = Math.floor(min/60)
+            const days = Math.floor(hrs/24)
+
+            //console.log(sec,min,hrs,days)
+
+            let ago = ''
+
+            if(sec < 60){
+                ago = `${sec} seconds ago`
+            }else if(min < 60){
+                ago = `${min} minutes ago`    
+            }else if(hrs < 24){
+                ago = `${hrs} hours ago`
+            }else{
+                ago = `${days} days ago`
+            }
+
+            //console.log(ago)
+            
             dom += `<a href="/students/${student.id}" class="navigate-details text-decoration-none text-black">
+                <div class="card p-2 rounded shadow text-center border border-dark">
+                    <p class="text-uppercase">Uploaded: ${ago}</p>
+                </div>
                 <div class="student-card">
                     <div class="image-container">
                         ${student.student_image
@@ -66,6 +97,7 @@
                     <div class="card-content">
                         <h1 class="text-black">${student.name}</h1>
                         <p class="text-black">${student.roll_no}</p>
+                        <p>Uploaded: ${ago}</p>
                     </div>
                 </div>
             </a>`;
