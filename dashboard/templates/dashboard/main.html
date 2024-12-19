@@ -15,10 +15,6 @@
 
   {% bootstrap_css %}
 
-  <script defer src="{% static 'dashboard/js/script.js' %}"></script>
-  <script defer src="{% static 'dashboard/js/fetchStudent.js' %}"></script>
-  <script defer src="{% static 'dashboard/js/fetchStudentDetails.js' %}"></script>
-
   <link rel="stylesheet" href="{% static 'dashboard/css/style.css' %}" />
 </head>
 
@@ -95,11 +91,14 @@
     </div>
     {% endfor %}
     {% endif %}
+
     {% block content %} {% endblock %}
   </div>
 
 
   {% bootstrap_javascript %}
+
+  {% block scripts %} {% endblock %}
 </body>
 
 </html>
